@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Жаным, жүрегім ренжімеші, кешірші мені 🥺❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: linear-gradient(145deg, #ffeef4 0%, #fff0f8 45%, #fce4ec 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow: hidden;
+      position: relative;
+      color: #4a2c38;
+    }
+
+    /* Фоннан ұшатын элементтер (попугайлар, мармеладки, мысық, жүректер) */
+    .bg-decor {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .float-item {
+      position: absolute;
+      user-select: none;
+      opacity: 0.75;
+      animation: floatSlow ease-in-out infinite alternate;
+      filter: drop-shadow(0 4px 8px rgba(216, 27, 96, 0.12));
+    }
+
+    @keyframes floatSlow {
+      0% { transform: translateY(0px) rotate(-6deg) scale(1); }
+      100% { transform: translateY(-20px) rotate(8deg) scale(1.07); }
+    }
+
+    /* Негізгі карточка */
+    .card {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 440px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 2px solid rgba(255, 255, 255, 0.95);
+      border-radius: 30px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(233, 30, 99, 0.16);
+      transition: all 0.4s ease;
+    }
+
+    /* Үлкен өтініш смайлигі 🥺 */
+    .big-emoji {
+      font-size: 86px;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      display: inline-block;
+      animation: pleadPulse 2.4s ease-in-out infinite;
+      filter: drop-shadow(0 8px 16px rgba(233, 30, 99, 0.18));
+      transition: transform 0.3s ease;
+    }
+
+    @keyframes pleadPulse {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.06) rotate(-4deg); }
+      75% { transform: scale(1.06) rotate(4deg); }
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.38;
+      color: #3d1e2b;
+      margin-bottom: 14px;
+    }
+
+    /* Қате жауап хабарламасы (тоаст) */
+    .error-toast {
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #d81b60;
+      background: rgba(255, 228, 238, 0.85);
+      border-radius: 14px;
+      padding: 8px 14px;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: all 0.25s ease;
+    }
+
+    .error-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Батырмалар контейнері */
+    .buttons-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 8px;
+      min-height: 64px;
+    }
+
+    button {
+      border: none;
+      border-radius: 18px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+      user-select: none;
+    }
+
+    #yesBtn {
+      background: linear-gradient(135deg, #ff4081 0%, #e91e63 100%);
+      color: #ffffff;
+      font-size: 18px;
+      padding: 15px 32px;
+      box-shadow: 0 10px 24px rgba(233, 30, 99, 0.35);
+      z-index: 20;
+    }
+
+    #yesBtn:active {
+      transform: scale(0.96);
+    }
+
+    /* 6-шы рет басылғанда экранды толық жабатын "Иә" батырмасы */
+    #yesBtn.fullscreen-yes {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      border-radius: 0;
+      font-size: 42px !important;
+      padding: 20px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: pulseBig 1.4s infinite alternate;
+    }
+
+    @keyframes pulseBig {
+      from { transform: scale(1); }
+      to { transform: scale(1.03); }
+    }
+
+    #noBtn {
+      background: #f3e5ea;
+      color: #7a5262;
+      font-size: 16px;
+      padding: 15px 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    #noBtn:active {
+      transform: scale(0.94);
+    }
+
+    /* «Иә» басылғаннан кейінгі жүрекжарды хат экраны */
+    .final-screen {
+      display: none;
+      animation: fadeInScale 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.9) translateY(14px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .final-icons {
+      font-size: 38px;
+      margin-bottom: 14px;
+      letter-spacing: 6px;
+      animation: bounceIcons 2s ease-in-out infinite;
+    }
+
+    @keyframes bounceIcons {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .love-letter {
+      font-size: 15px;
+      line-height: 1.68;
+      font-weight: 600;
+      color: #42212f;
+      background: rgba(255, 245, 248, 0.95);
+      border: 1.5px solid #ffd1e1;
+      border-radius: 22px;
+      padding: 20px 18px;
+      text-align: left;
+      box-shadow: inset 0 2px 10px rgba(233, 30, 99, 0.05);
+      max-height: 65vh;
+      overflow-y: auto;
+    }
+
+    .love-letter p {
+      margin-bottom: 12px;
+    }
+
+    .love-letter p:last-child {
+      margin-bottom: 0;
+      text-align: right;
+      color: #d81b60;
+      font-weight: 800;
+    }
+
+    /* Хат ішіндегі ыңғайлы айналдыру жолағы */
+    .love-letter::-webkit-scrollbar {
+      width: 6px;
+    }
+    .love-letter::-webkit-scrollbar-track {
+      background: rgba(255, 209, 225, 0.3);
+      border-radius: 10px;
+    }
+    .love-letter::-webkit-scrollbar-thumb {
+      background: rgba(233, 30, 99, 0.35);
+      border-radius: 10px;
+    }
+
+    /* Салют бөлшектері */
+    .confetti-piece {
+      position: fixed;
+      top: -10vh;
+      pointer-events: none;
+      z-index: 10000;
+      font-size: 28px;
+      animation: fallDown linear forwards;
+    }
+
+    @keyframes fallDown {
+      0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 1; }
+      85% { opacity: 1; }
+      100% { transform: translateY(115vh) rotate(360deg) scale(1.25); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Фондық безендіру элементтері (попугайлар, мармелад, мысық, жүректер) -->
+  <div class="bg-decor" id="bgDecor"></div>
+
+  <!-- Негізгі карточка -->
+  <div class="card">
+    <!-- Сұрақ экраны -->
+    <div id="questionScreen">
+      <div class="big-emoji" id="pleadEmoji">🥺</div>
+      <h1>Жаным, жүрегім ренжімеші, кешірші мені 🥺❤️</h1>
+      
+      <div class="error-toast" id="errorToast"></div>
+
+      <div class="buttons-wrap">
+        <button id="yesBtn">Иә! ❤️</button>
+        <button id="noBtn">Жоқ 😢</button>
+      </div>
+    </div>
+
+    <!-- Алуаға арналған соңғы жүрекжарды хат экраны -->
+    <div id="finalScreen" class="final-screen">
+      <div class="final-icons">🐱❤️🦜🍬</div>
+      <div class="love-letter">
+        <p>Алуа, жаным, жүрегім! Арамыз қанша алыс болғанымен, сенің жүрегің — менің қасымда. Әрқашан!</p>
+        <p>Сенсіз өмірдің мәнін түсіне де алмаймын. Сенімен өткізген уақытым — ең бақытты шақтарым.</p>
+        <p>Сені кездестіру — мен үшін қайталанбас ерекше сәт болды. Саған деген сезімімді өлшеуге болмайды, себебі ол — шексіз.</p>
+        <p>Жаным сол, сені бірінші көргеннен-ақ жақсы көріп едім және де өмірімнің соңына дейін жақсы көріп өтемін! ❤️</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const bgDecor = document.getElementById('bgDecor');
+      const yesBtn = document.getElementById('yesBtn');
+      const noBtn = document.getElementById('noBtn');
+      const errorToast = document.getElementById('errorToast');
+      const questionScreen = document.getElementById('questionScreen');
+      const finalScreen = document.getElementById('finalScreen');
+      const pleadEmoji = document.getElementById('pleadEmoji');
+
+      // 1. Фонға попугай, мармелад, мысық және жүректерді орналастыру
+      const decorEmojis = ['🦜', '🍬', '🐱', '❤️', '🍭', '💖', '✨', '💕'];
+      const totalItems = 24;
+
+      for (let i = 0; i < totalItems; i++) {
+        const span = document.createElement('span');
+        span.className = 'float-item';
+        span.textContent = decorEmojis[i % decorEmojis.length];
+        
+        const col = i % 6;
+        const row = Math.floor(i / 6);
+        const left = (col * 16.5) + (Math.random() * 10);
+        const top = (row * 24) + (Math.random() * 12);
+        const size = Math.floor(Math.random() * 18) + 22;
+        const duration = (Math.random() * 2.5 + 2.5).toFixed(2);
+        const delay = (Math.random() * 2).toFixed(2);
+
+        span.style.left = `${left}%`;
+        span.style.top = `${top}%`;
+        span.style.fontSize = `${size}px`;
+        span.style.animationDuration = `${duration}s`;
+        span.style.animationDelay = `-${delay}s`;
+
+        bgDecor.appendChild(span);
+      }
+
+      // 2. «Жоқ» батырмасына арналған нақты 6 хабарлама
+      const pleadMessages = [
+        "1) 404 error🤨",
+        "2) Қате жауап!🫠",
+        "3) технические шоколадки🤖",
+        "4) ия-ны таңдашы😌",
+        "5) Жоқ бұл емес!🙁",
+        "6) Шамалы қалды!❤️🥳"
+      ];
+
+      const pleadFaces = ['🥺', '🤨', '🫠', '🤖', '😌', '🙁', '❤️'];
+
+      let noClickCount = 0;
+      let currentYesFontSize = 18;
+      let currentYesPadV = 15;
+      let currentYesPadH = 32;
+
+      noBtn.addEventListener('click', () => {
+        if (noClickCount >= 6) return;
+
+        // Хабарламаны шығару
+        errorToast.textContent = pleadMessages[noClickCount];
+        errorToast.classList.add('show');
+
+        // Смайликті ауыстыру
+        pleadEmoji.textContent = pleadFaces[noClickCount + 1] || '🥺';
+
+        noClickCount++;
+
+        if (noClickCount < 6) {
+          // "Иә" батырмасын біртіндеп үлкейту
+          currentYesFontSize += 6;
+          currentYesPadV += 5;
+          currentYesPadH += 10;
+
+          yesBtn.style.fontSize = `${currentYesFontSize}px`;
+          yesBtn.style.padding = `${currentYesPadV}px ${currentYesPadH}px`;
+
+          // "Жоқ" батырмасын кішірейтіп қозғалту
+          const noScale = Math.max(0.55, 1 - noClickCount * 0.08);
+          const randomX = (Math.random() - 0.5) * 24;
+          const randomY = (Math.random() - 0.5) * 14;
+          noBtn.style.transform = `translate(${randomX}px, ${randomY}px) scale(${noScale})`;
+        } else {
+          // 6-шы рет басылғанда "Иә" батырмасы толық экранды алады
+          noBtn.style.display = 'none';
+          yesBtn.classList.add('fullscreen-yes');
+          yesBtn.innerHTML = 'Иә! ❤️🥰';
+        }
+      });
+
+      // 3. «Иә» батырмасын басқандағы салют пен хатты көрсету
+      yesBtn.addEventListener('click', () => {
+        yesBtn.classList.remove('fullscreen-yes');
+        
+        questionScreen.style.display = 'none';
+        finalScreen.style.display = 'block';
+
+        launchConfettiShower();
+      });
+
+      // Салют функциясы
+      function launchConfettiShower() {
+        const celebrationEmojis = ['❤️', '💖', '🍬', '🦜', '🐱', '🍭', '✨', '🥰'];
+        const totalPieces = 65;
+
+        for (let i = 0; i < totalPieces; i++) {
+          setTimeout(() => {
+            const piece = document.createElement('div');
+            piece.className = 'confetti-piece';
+            piece.textContent = celebrationEmojis[Math.floor(Math.random() * celebrationEmojis.length)];
+            
+            piece.style.left = `${Math.random() * 96}vw`;
+            piece.style.fontSize = `${Math.floor(Math.random() * 16) + 22}px`;
+            
+            const fallDuration = (Math.random() * 2 + 2.2).toFixed(2);
+            piece.style.animationDuration = `${fallDuration}s`;
+
+            document.body.appendChild(piece);
+
+            setTimeout(() => {
+              piece.remove();
+            }, parseFloat(fallDuration) * 1000 + 100);
+          }, i * 45);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
